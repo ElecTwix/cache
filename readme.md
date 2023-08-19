@@ -7,7 +7,7 @@
 ### With Any type
 
 ```go
-abc := cache.NewCache[any, string](*time.NewTicker(1 * time.Second))
+abc := cache.NewCache[string, any](*time.NewTicker(1 * time.Second))
 abc.Set("a", "b", 1*time.Second)
 raw, ok := abc.Get("a") // raw is any
 _, castok := raw.(string) // can cast to string
@@ -17,7 +17,7 @@ _, castok := raw.(string) // can cast to string
 ### With Data type
 
 ```go
-abc := cache.NewCache[int, string](*time.NewTicker(1 * time.Second))
+abc := cache.NewCache[string, int](*time.NewTicker(1 * time.Second))
 abc.Set("a", 15, 1*time.Second)
 data, ok := abc.Get("a")  // data is int
 ```
@@ -39,7 +39,7 @@ type User struct {
     Age  int
 }
 
-abc := cache.NewCache[string, User](*time.NewTicker(1 * time.Second))
+abc := cache.NewCache[User, string](*time.NewTicker(1 * time.Second))
 abc.Set("a", User{Name: "abc", Age: 15}, 1*time.Second)
 data, ok := abc.Get("a")  // data is User
 ```
